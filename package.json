@@ -1,0 +1,16 @@
+{
+  "name": "fairgame-webflow",
+  "version": "1.0.0",
+  "source": "src/index.html",
+  "repository": "https://github.com/crowdform/fairgame-webflow.git",
+  "author": "Crowdform",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel watch",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "parcel": "^2.7.0",
+    "sass": "^1.54.3"
+  }
+}
