@@ -13,18 +13,18 @@ Base
 // Mobile portrait: styles applied to screens 478px wide and below
 
 // mobile
-$breakpoint-sm: 767px; // tablet
-$breakpoint-md: 768px; // desktop
-$breakpoint-lg: 768px; // desktop large
+$breakpoint-sm: 768px; // tablet
+$breakpoint-md: 992px; // desktop
+// $breakpoint-lg: 1440px; // desktop large
 
 // usage tablet
 // @media (min-width: $breakpoint-sm) {
-  
+
 // }
 
 @mixin duck-sm {
-    width: 72px;
-    height: 80.85px;
+  width: 72px;
+  height: 80.85px;
 }
 @mixin dark-lg {
   margin: 0;
@@ -32,22 +32,29 @@ $breakpoint-lg: 768px; // desktop large
   list-style: none;
 }
 
-
-html, body{
+html,
+body {
   counter-reset: hit;
-  width:100%;
-  height:100%;
-  box-sizing:border-box;
-margin: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
 }
 
-*, *:before, *:after{
-  box-sizing:border-box;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 
-input.duck-row__duck{
+.fairgame-duckmini-container {
+  position: relative;
+  height: 80.85px;
+  width: 100vw;
+
+  input.duck-row__duck {
     @extend .fg-crosshairs;
-    position:absolute;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -55,135 +62,130 @@ input.duck-row__duck{
     width: 72px;
     height: 80.85px;
     appearance: none;
-     -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none;
-  &:focus {
-    outline: none;
-    appearance: none;
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    &:focus {
+      outline: none;
+      appearance: none;
+    }
   }
-}
 
-a{
-  color:red;
-  text-decoration: none; 
-}
+  a {
+    color: red;
+    text-decoration: none;
+  }
 
-
-.fg-crosshairs {
-    cursor: url('data-url:./assets/fg-cursor.png') 44 44, auto;
-}
-.game-row{
-    background:$page-bg;
-    position:absolute;
+  .fg-crosshairs {
+    cursor: url("data-url:./assets/fg-cursor.png") 44 44, auto;
+  }
+  .game-row {
+    background: $page-bg;
+    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    width:100vw;
-    height:200px;
+    width: 100vw;
+    height: 200px;
     // border-bottom: 5px solid brown;
     overflow: hidden;
     perspective: 1000px;
     align-items: flex-end;
-}
+  }
 
-.duck-row{
+  .duck-row {
     @extend .fg-crosshairs;
-    display:flex;
-    flex-wrap:wrap;
-    width:100vw;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
     transform-style: preserve-3d;
     animation: move 10s linear forwards 1;
     animation-iteration-count: infinite;
     align-items: flex-end;
     position: absolute;
-    bottom: -80.48px * 2;
+    bottom: -80.48px * 2; // 3 rows
     @media (min-width: $breakpoint-sm) {
-        bottom: -80.48px;
+      bottom: -80.48px;
     }
     @media (min-width: $breakpoint-md) {
-        bottom: -80.48px;
+      bottom: 0; // 2 rows
     }
 
-  &__box{
-
-    @extend .fg-crosshairs;
-    width: 72px;
-    height: 80.85px;
-    position: relative;
- 
+    &__box {
+      @extend .fg-crosshairs;
+      width: 72px;
+      height: 80.85px;
+      position: relative;
+    }
+    &__img {
+      @extend .fg-crosshairs;
+      width: 72px;
+      height: 80.85px;
+      background: url("data-url:./assets/fg-duck.png");
+      background-size: contain;
+      transition: all 0.2s;
+    }
   }
-  &__img{
-    @extend .fg-crosshairs;
-    width: 72px;
-    height: 80.85px;
-    background:url('data-url:./assets/fg-duck.png');
-    background-size:contain;
-    transition:all .2s;
-  }
-}
 
-
-/************* 
+  /************* 
 States
 **************/
 
-input:checked {
-  counter-increment: hit;
-  pointer-events: none !important;
-  &:after{
-    content:"BANG!";
-    position:relative;
-    top: 10px; 
-    left:0;
-    right: 0;
-    padding:10px;
-    width:75px;
-    height:75px;
-    z-index:5;
-    color: rgb(239, 196, 0);
-    font-size:12px;
-    text-align: center;
-    width:100%;
- 
-    animation: hit 2s forwards;
-    
-  }
-  & ~.duck-row__img{
-    background: none;
-    &:after{
-      content:"";
-      position:absolute;
-      top:20;
-      left:500;
-      width:inherit;
-      height:inherit;
+  input:checked {
+    counter-increment: hit;
+    pointer-events: none !important;
+    &:after {
+      content: "BANG!";
+      position: relative;
+      top: 10px;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      width: 75px;
+      height: 75px;
+      z-index: 5;
+      color: rgb(239, 196, 0);
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+
+      animation: hit 2s forwards;
+    }
+    & ~ .duck-row__img {
+      background: none;
+      &:after {
+        content: "";
+        position: absolute;
+        top: 20;
+        left: 500;
+        width: inherit;
+        height: inherit;
+      }
     }
   }
-  
-}
 
-
-
-@keyframes move {
-  0%{
-    //   margin-left: -4000px;
-    transform: translate3d(-100vw, 0, 0);
+  @keyframes move {
+    0% {
+      //   margin-left: -4000px;
+      transform: translate3d(-100vw, 0, 0);
     }
-  100%{
-    // margin-left:2500px;
-   transform: translate3d(100vw, 0, 0);
-   }
-}
+    100% {
+      // margin-left:2500px;
+      transform: translate3d(100vw, 0, 0);
+    }
+  }
 
-@keyframes hit{
-  0%{top: 10px;}
-  100%{
-    top:-100px;
-    display: none;
-    opacity: 0;
+  @keyframes hit {
+    0% {
+      top: 10px;
+    }
+    100% {
+      top: -100px;
+      display: none;
+      opacity: 0;
+    }
   }
 }
