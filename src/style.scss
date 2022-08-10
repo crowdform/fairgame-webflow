@@ -4,12 +4,31 @@ $page-bg: #000;
 Base
 **************/
 
+// 1920px: styles applied to screens 1920px wide and above
+// 1440px: styles applied to screens 1440px wide and above
+// 1280px: styles applied to screens 1280px wide and above
+// Desktop (base): styles apply to all devices unless overridden at other device breakpoints
+// Tablet: styles applied to screens 991px wide and below
+// Mobile landscape: styles applied to screens 767px wide and below
+// Mobile portrait: styles applied to screens 478px wide and below
+
+// mobile
+$breakpoint-sm: 767px; // tablet
+$breakpoint-md: 768px; // desktop
+$breakpoint-lg: 768px; // desktop large
+
+// usage tablet
+// @media (min-width: $breakpoint-sm) {
+  
+// }
+
+
 html, body{
   counter-reset: hit;
   width:100%;
   height:100%;
   box-sizing:border-box;
-  background:$page-bg;
+
 }
 
 *, *:before, *:after{
@@ -17,7 +36,7 @@ html, body{
 }
 
 input{
-       @extend .fg-crosshairs;
+    @extend .fg-crosshairs;
     position:absolute;
     top: 0;
     left: 0;
@@ -38,20 +57,12 @@ a{
 }
 
 
-.game-header{
-  padding:20px;
-  font-size:30px;
-  font-weight:bolder;
-}
-
-.game-header::after {
-  content: counter(hit);
-}
-
 .fg-crosshairs {
     cursor: url('./assets/fg-cursor.png') 44 44, auto;
 }
 .game-row{
+  
+    background:$page-bg;
 position:absolute;
     bottom: 0;
     left: 0;
@@ -65,10 +76,10 @@ position:absolute;
 }
 
 .duck-row{
-    @extend .fg-crosshairs;
+  @extend .fg-crosshairs;
   display:flex;
-  flex-wrap:nowrap;
-       overflow: hidden;
+  flex-wrap:wrap;
+  overflow: hidden;
 
 //   margin-left: -100vw;
   transform: translate3d(-100vw, 0, 0);
@@ -77,7 +88,15 @@ position:absolute;
   transform-style: preserve-3d;
   animation: move 10s linear forwards 1;
   animation-iteration-count: infinite;
-      align-items: flex-end;
+    align-items: flex-end;
+    position: absolute;
+    bottom: -80.48px * 2;
+    @media (min-width: $breakpoint-sm) {
+    bottom: -80.48px;
+    }
+    @media (min-width: $breakpoint-md) {
+    bottom: -80.48px;
+    }
 //   &--two{
 //     margin-left: 2000px;
 //     animation: move2 15s linear forwards .3s 1;
@@ -86,16 +105,12 @@ position:absolute;
 //     animation: move 14s linear forwards 3s 1;
 //   }
   &__box{
-    // margin-top:50px;
-    // margin-right:100px;
+
     @extend .fg-crosshairs;
     width: 72px;
     height: 80.85px;
     position: relative;
  
-    // &--reverse{
-    //   transform: rotateY(180deg);
-    // }
   }
   &__img{
     @extend .fg-crosshairs;
@@ -109,43 +124,13 @@ position:absolute;
 }
 
 
-// .game-over{
-//   position:absolute;
-//   top:100px;
-//   right:0;
-//   left:0;
-//   margin-right: auto;
-//   margin-left: auto;
-//   width:800px;
-//   height:479px;
-//   background:white;
-//   font-size:30px;
-//   background:url(https://s-media-cache-ak0.pinimg.com/736x/d9/a7/fc/d9a7fc470357f881adb27b0ed507f94d.jpg), red;
-//   background-size:cover;
-//   background-repeat:no-repeat;
-//   .game-txt{
-//     position:absolute;
-//     top:190px;
-//     width:100%;
-//     height:60px;
-//     h1{
-//       font-size:70px;
-//     }
-//   }
-// }
-
-// .game-score::after {
-//   content: counter(hit);
-// }
-
-
-
 /************* 
 States
 **************/
 
 input:checked {
   counter-increment: hit;
+  pointer-events: none;
   &:after{
     content:"BANG!";
     position:relative;
@@ -190,12 +175,6 @@ input:checked {
    transform: translate3d(100vw, 0, 0);
    }
 }
-
-// @keyframes move2 {
-//   0%{margin-left: 2000px;}
-//   100%{margin-left:-4000px;}
-// }
-
 
 @keyframes flow{
   0%{left:80px;}

@@ -6,7 +6,6 @@ html, body {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  background: #000;
 }
 
 *, *:before, *:after {
@@ -33,21 +32,12 @@ a {
   text-decoration: none;
 }
 
-.game-header {
-  padding: 20px;
-  font-size: 30px;
-  font-weight: bolder;
-}
-
-.game-header::after {
-  content: counter(hit);
-}
-
 .fg-crosshairs, .duck-row__img, .duck-row__box, .duck-row, input {
   cursor: url("/fg-cursor.91bfd078.png") 44 44, auto;
 }
 
 .game-row {
+  background: #000;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -61,7 +51,7 @@ a {
 
 .duck-row {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   overflow: hidden;
   transform: translate3d(-100vw, 0, 0);
   width: 100vw;
@@ -70,6 +60,18 @@ a {
   animation: move 10s linear forwards 1;
   animation-iteration-count: infinite;
   align-items: flex-end;
+  position: absolute;
+  bottom: -160.96px;
+}
+@media (min-width: 767px) {
+  .duck-row {
+    bottom: -80.48px;
+  }
+}
+@media (min-width: 768px) {
+  .duck-row {
+    bottom: -80.48px;
+  }
 }
 .duck-row__box {
   width: 72px;
@@ -89,6 +91,7 @@ States
 **************/
 input:checked {
   counter-increment: hit;
+  pointer-events: none;
 }
 input:checked:after {
   content: "BANG!";
