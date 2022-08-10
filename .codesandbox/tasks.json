@@ -8,6 +8,10 @@
       "name": "parcel",
       "command": "parcel index.html",
       "runAtStart": true
+    },
+    "parcel build": {
+      "name": "parcel build",
+      "command": "parcel build"
     }
   }
 }
