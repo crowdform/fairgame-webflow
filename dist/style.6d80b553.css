@@ -12,17 +12,17 @@ html, body {
   box-sizing: border-box;
 }
 
-input {
+input.duck-row__duck {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100%;
-  height: 100%;
+  width: 72px;
+  height: 80.85px;
   appearance: none;
 }
-input:focus {
+input.duck-row__duck:focus {
   outline: none;
   appearance: none;
 }
@@ -32,7 +32,7 @@ a {
   text-decoration: none;
 }
 
-.fg-crosshairs, .duck-row__img, .duck-row__box, .duck-row, input {
+.fg-crosshairs, .duck-row__img, .duck-row__box, .duck-row, input.duck-row__duck {
   cursor: url("/fg-cursor.91bfd078.png") 44 44, auto;
 }
 
@@ -105,6 +105,8 @@ input:checked:after {
   z-index: 5;
   color: rgb(239, 196, 0);
   font-size: 12px;
+  text-align: center;
+  width: 100%;
   animation: hit 2s forwards;
 }
 input:checked ~ .duck-row__img {
