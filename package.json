@@ -6,8 +6,8 @@
   "author": "Crowdform",
   "license": "MIT",
   "scripts": {
-    "start": "parcel watch index.html",
-    "build": "parcel build index.html"
+    "start": "parcel watch",
+    "build": "parcel build"
   },
   "devDependencies": {
     "parcel": "^2.7.0",
