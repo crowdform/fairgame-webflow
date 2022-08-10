@@ -1,7 +1,4 @@
-$page-bg: #4682B4;
-$game-bg: "http://www.scottishrugby.org/sites/default/files/hero-images/xqe7-xjv.jpeg";
-
-
+$page-bg: #000;
 
 /************* 
 Base
@@ -12,16 +9,15 @@ html, body{
   width:100%;
   height:100%;
   box-sizing:border-box;
-  cursor: crosshair;
   background:$page-bg;
 }
 
 *, *:before, *:after{
   box-sizing:border-box;
-  cursor: crosshair;
 }
 
 input{
+       @extend .fg-crosshairs;
     position:absolute;
     top: 0;
     left: 0;
@@ -41,102 +37,6 @@ a{
   text-decoration: none; 
 }
 
-/************* 
-layout
-**************/
-.l-header-container{
-  position:absolute;
-  top:0;
-  right:0;
-  left:0;
-  margin-right:auto;
-  margin-left:auto;
-  width:1100px;
-  height:130px;
-  text-align:center;
-  background:rgba(white, .6);
-}
-
-.l-game-container{
-  position:absolute;
-  top:130px;
-  right: 0;
-  left:0;
-  display:flex;
-  flex-direction:column;
-  margin-right: auto;
-  margin-left: auto;
-  width:1100px;
-  height:700px;
-
-  overflow: hidden;
-}
-
-// .l-curtain{
-//   position:absolute;
-//   width:370px;
-//   height:750px;
-//   background:url(http://vignette4.wikia.nocookie.net/glee/images/1/13/Theater_curtain_left-1-.png/revision/latest?cb=20120610182415);
-//   background-repeat:no-repeat;
-//   z-index:2;
-//   &--right{
-//     top:175px;
-//     left:1050px;
-//     transform: rotateY(180deg);
-//   }
-//   &--left{
-//     top:175px;
-//     left:200px;
-//   }
-// }
-
-// .l-top-curtain{
-//   position:absolute;
-//   top:125px;
-//   left:200px;
-//   width:1220px;
-//   height:100px;
-//   background:url(http://www.hexhamstagesociety.com/wp-content/themes/hass/lib/img/header_mask.png);
-//   z-index:3;
-// }
-
-// .l-game-bottom{
-//   position:absolute;
-//   top:670px;
-//   right:0;
-//   left:0;
-//   margin-right: auto;
-//   margin-left: auto;
-//   width:1100px;
-//   height:220px;
-//   background:repeating-linear-gradient( to right, #8B0000, #8B0000 10px, #FAEBD7 10px, #FAEBD7 20px);
-//   // &:before{
-//   //   content:'';
-//   //   position:absolute;
-//   //   top:-50px;
-//   //   left:80px;
-//   //   width:1050px;
-//   //   height:100px;
-//   //   background:url("http://www.clker.com/cliparts/Z/b/L/c/1/X/sea-waves-hi.png");
-//   //   animation: flow 1s forwards  infinite;
-//   // }
-// }
-
-
-// .l-game-over{
-//   position:absolute;
-//   top:-2000px;
-//   width:100%;
-//   height:1000px;
-//   background:repeating-linear-gradient(45deg, rgba(#8B0000, .6), rgba(#8B0000, .6) 10px, rgba(#FAEBD7, .6) 10px, rgba(#FAEBD7, .6) 20px);
-//   z-index:5;
-//   text-align:center;
-//   cursor: pointer;
-//   animation: over 3s forwards 13s;
-// }
-/************* 
-modules
-**************/
 
 .game-header{
   padding:20px;
@@ -148,24 +48,36 @@ modules
   content: counter(hit);
 }
 
+.fg-crosshairs {
+    cursor: url('./assets/fg-cursor.png') 44 44, auto;
+}
 .game-row{
+position:absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
   width:100vw;
   height:200px;
-  border-bottom: 5px solid brown;
+  // border-bottom: 5px solid brown;
   overflow: hidden;
   perspective: 1000px;
-align-items: flex-end;
+    align-items: flex-end;
 }
 
 .duck-row{
+    @extend .fg-crosshairs;
   display:flex;
   flex-wrap:nowrap;
-  margin-left: -4000px;
-  width:5000px;
+       overflow: hidden;
+
+//   margin-left: -100vw;
+  transform: translate3d(-100vw, 0, 0);
+  width:100vw;
   height:200px;
   transform-style: preserve-3d;
-  animation: move 18s linear forwards 1;
+  animation: move 10s linear forwards 1;
   animation-iteration-count: infinite;
+      align-items: flex-end;
 //   &--two{
 //     margin-left: 2000px;
 //     animation: move2 15s linear forwards .3s 1;
@@ -176,14 +88,17 @@ align-items: flex-end;
   &__box{
     // margin-top:50px;
     // margin-right:100px;
+    @extend .fg-crosshairs;
     width: 72px;
     height: 80.85px;
     position: relative;
+ 
     // &--reverse{
     //   transform: rotateY(180deg);
     // }
   }
   &__img{
+    @extend .fg-crosshairs;
     width: 72px;
     height: 80.85px;
     // margin-top: -150px;
@@ -232,7 +147,7 @@ States
 input:checked {
   counter-increment: hit;
   &:after{
-    content:"+1";
+    content:"BANG!";
     position:relative;
     top: 10px; 
     left:0;
@@ -241,16 +156,17 @@ input:checked {
     width:75px;
     height:75px;
     z-index:5;
-    color:gold;
-    font-size:30px;
-    background:rgba(black, .6);
-    border-radius:50%;
+    color: rgb(239, 196, 0);
+    font-size:12px;
+    // background:rgba(black, .6);
+    // border-radius:50%;
     animation: hit 2s forwards;
     
   }
   & ~.duck-row__img{
-    background:url(http://cliparts.co/cliparts/zcX/oqo/zcXoqorgi.png);
-    background-size:contain;
+    // background:url(http://cliparts.co/cliparts/zcX/oqo/zcXoqorgi.png);
+    // background-size:contain;
+    background: none;
     &:after{
       content:"";
       position:absolute;
@@ -265,14 +181,20 @@ input:checked {
 
 
 @keyframes move {
-  0%{margin-left: -4000px;}
-  100%{margin-left:2500px;}
+  0%{
+    //   margin-left: -4000px;
+    transform: translate3d(-100vw, 0, 0);
+    }
+  100%{
+    // margin-left:2500px;
+   transform: translate3d(100vw, 0, 0);
+   }
 }
 
-@keyframes move2 {
-  0%{margin-left: 2000px;}
-  100%{margin-left:-4000px;}
-}
+// @keyframes move2 {
+//   0%{margin-left: 2000px;}
+//   100%{margin-left:-4000px;}
+// }
 
 
 @keyframes flow{

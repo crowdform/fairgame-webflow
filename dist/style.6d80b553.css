@@ -6,13 +6,11 @@ html, body {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  cursor: crosshair;
-  background: #4682B4;
+  background: #000;
 }
 
 *, *:before, *:after {
   box-sizing: border-box;
-  cursor: crosshair;
 }
 
 input {
@@ -35,39 +33,6 @@ a {
   text-decoration: none;
 }
 
-/************* 
-layout
-**************/
-.l-header-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  margin-right: auto;
-  margin-left: auto;
-  width: 1100px;
-  height: 130px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.6);
-}
-
-.l-game-container {
-  position: absolute;
-  top: 130px;
-  right: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  margin-right: auto;
-  margin-left: auto;
-  width: 1100px;
-  height: 700px;
-  overflow: hidden;
-}
-
-/************* 
-modules
-**************/
 .game-header {
   padding: 20px;
   font-size: 30px;
@@ -78,10 +43,17 @@ modules
   content: counter(hit);
 }
 
+.fg-crosshairs, .duck-row__img, .duck-row__box, .duck-row, input {
+  cursor: url("/fg-cursor.91bfd078.png") 44 44, auto;
+}
+
 .game-row {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100vw;
   height: 200px;
-  border-bottom: 5px solid brown;
   overflow: hidden;
   perspective: 1000px;
   align-items: flex-end;
@@ -90,12 +62,14 @@ modules
 .duck-row {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: -4000px;
-  width: 5000px;
+  overflow: hidden;
+  transform: translate3d(-100vw, 0, 0);
+  width: 100vw;
   height: 200px;
   transform-style: preserve-3d;
-  animation: move 18s linear forwards 1;
+  animation: move 10s linear forwards 1;
   animation-iteration-count: infinite;
+  align-items: flex-end;
 }
 .duck-row__box {
   width: 72px;
@@ -117,7 +91,7 @@ input:checked {
   counter-increment: hit;
 }
 input:checked:after {
-  content: "+1";
+  content: "BANG!";
   position: relative;
   top: 10px;
   left: 0;
@@ -126,15 +100,12 @@ input:checked:after {
   width: 75px;
   height: 75px;
   z-index: 5;
-  color: gold;
-  font-size: 30px;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 50%;
+  color: rgb(239, 196, 0);
+  font-size: 12px;
   animation: hit 2s forwards;
 }
 input:checked ~ .duck-row__img {
-  background: url(http://cliparts.co/cliparts/zcX/oqo/zcXoqorgi.png);
-  background-size: contain;
+  background: none;
 }
 input:checked ~ .duck-row__img:after {
   content: "";
@@ -147,18 +118,10 @@ input:checked ~ .duck-row__img:after {
 
 @keyframes move {
   0% {
-    margin-left: -4000px;
+    transform: translate3d(-100vw, 0, 0);
   }
   100% {
-    margin-left: 2500px;
-  }
-}
-@keyframes move2 {
-  0% {
-    margin-left: 2000px;
-  }
-  100% {
-    margin-left: -4000px;
+    transform: translate3d(100vw, 0, 0);
   }
 }
 @keyframes flow {
