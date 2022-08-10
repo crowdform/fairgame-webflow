@@ -6,12 +6,12 @@
   "tasks": {
     "parcel": {
       "name": "parcel",
-      "command": "parcel index.html",
+      "command": "yarn start",
       "runAtStart": true
     },
     "parcel build": {
       "name": "parcel build",
-      "command": "parcel build"
+      "command": "yarn build"
     }
   }
 }
