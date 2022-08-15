@@ -15,7 +15,7 @@ Base
 // mobile
 $breakpoint-sm: 767px; // tablet
 $breakpoint-md: 991px; // desktop
-// $breakpoint-lg: 1440px; // desktop large
+$breakpoint-lg: 1440px; // desktop large
 
 // usage tablet
 // @media (min-width: $breakpoint-sm) {
@@ -26,28 +26,23 @@ $breakpoint-md: 991px; // desktop
   width: 72px;
   height: 80.85px;
 }
-@mixin dark-lg {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
 
-html,
-body {
-  counter-reset: hit;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  margin: 0;
-}
+// html,
+// body {
+//   counter-reset: hit;
+//   width: 100%;
+//   height: 100%;
+//   box-sizing: border-box;
+//   margin: 0;
+// }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
+// *,
+// *:before,
+// *:after {
+//   box-sizing: border-box;
+// }
 
-.fairgame-duckmini-container {
+.fg-dm-cont {
   position: relative;
   height: 80.85px;
   width: 100vw;
@@ -80,8 +75,11 @@ body {
   }
 
   .fg-crosshairs {
-    cursor: url("data-url:./assets/fg-cursor.png") 44 44, auto;
+    cursor: url("https://uploads-ssl.webflow.com/62837f6e536a00c80a0fd333/62fa1862c9b5d51bf8c56630_fg-cursor.png")
+        44 44,
+      auto;
   }
+
   .game-row {
     background: $page-bg;
     position: absolute;
@@ -112,7 +110,11 @@ body {
     }
     @media (min-width: $breakpoint-md) {
       bottom: 0; // 2 rows
+      animation: move 15s linear forwards 1;
     }
+    // @media (min-width: $breakpoint-lg) {
+    //   animation: move 20s linear forwards 1;
+    // }
 
     &__box {
       @extend .fg-crosshairs;
@@ -124,8 +126,10 @@ body {
       @extend .fg-crosshairs;
       width: 72px;
       height: 80.85px;
-      background: url("data-url:./assets/fg-duck.png");
+      background: url("https://uploads-ssl.webflow.com/62837f6e536a00c80a0fd333/62fa18629ad0006cb2ae33d8_fg-duck.png");
       background-size: contain;
+      background-position: bottom center;
+      background-repeat: no-repeat;
       transition: all 0.2s;
     }
   }
